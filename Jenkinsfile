@@ -1,10 +1,8 @@
 pipeline {
     agent any
-    
     tools {
         maven 'localMaven'
     }
-    
     stages{
         stage('Build'){
             steps {
@@ -40,6 +38,7 @@ pipeline {
                     echo ' Deployment failed.'
                 }
             }
-  		}
+        }
+
     }
 }
