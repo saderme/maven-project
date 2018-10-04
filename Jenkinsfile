@@ -27,13 +27,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "copy **\\target\\*.war ${params.tomcat_dev}"
+                        bat "copy webapp\\target\\*.war ${params.tomcat_dev}"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        bat "copy **\\target\\*.war {params.tomcat_prod}"
+                        bat "copy webapp\\target\\*.war {params.tomcat_prod}"
                     }
                 }
             }
