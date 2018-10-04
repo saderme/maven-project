@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     parameters {
-         string(name: 'tomcat_dev', defaultValue: 'localhost:8090', description: 'Staging Server')
-         string(name: 'tomcat_prod', defaultValue: 'localhost:9090', description: 'Production Server')
+         string(name: 'tomcat_dev', defaultValue: 'localhost', description: 'Staging Server')
+         string(name: 'tomcat_prod', defaultValue: 'localhost', description: 'Production Server')
     }
 
     triggers {
@@ -27,13 +27,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        bat "cp **/target/*.war ${params.tomcat_dev}/webapps"
+                        bat "copy **\\target\*.war ${params.tomcat_dev}\\webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        bat "cp **/target/*.war ec2-user@${params.tomcat_prod}:/webapps"
+                        bat "copy **\\target\\*.war {params.tomcat_prod}:\\webapps"
                     }
                 }
             }
